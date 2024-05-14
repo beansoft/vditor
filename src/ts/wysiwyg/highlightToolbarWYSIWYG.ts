@@ -824,7 +824,7 @@ export const genLinkRefPopover = (vditor: IVditor, linkRefElement: HTMLElement, 
     inputWrap.appendChild(input);
     input.className = "vditor-input";
     input.setAttribute("placeholder", window.VditorI18n.textIsNotEmpty);
-    input.style.width = "120px";
+    input.style.width = "200px";
     input.value =
         linkRefElement.getAttribute("alt") || linkRefElement.textContent;
     input.oninput = () => {
@@ -1039,7 +1039,7 @@ export const genAPopover = (vditor: IVditor, aElement: HTMLElement, range: Range
     input2Wrap.appendChild(input2);
     input2.className = "vditor-input";
     input2.setAttribute("placeholder", window.VditorI18n.tooltipText);
-    input2.style.width = "60px";
+    input2.style.width = "120px";
     input2.value = aElement.getAttribute("title") || "";
     input2.oninput = () => {
         updateA();

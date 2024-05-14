@@ -35,6 +35,7 @@ import {afterRenderEvent} from "./ts/wysiwyg/afterRenderEvent";
 import {WYSIWYG} from "./ts/wysiwyg/index";
 import {input} from "./ts/wysiwyg/input";
 import {renderDomByMd} from "./ts/wysiwyg/renderDomByMd";
+import {genAPopover} from "./ts/wysiwyg/highlightToolbarWYSIWYG";
 
 class Vditor extends VditorMethod {
     public readonly version: string;
@@ -100,6 +101,11 @@ class Vditor extends VditorMethod {
         const tip = new Tip();
         document.body.appendChild(tip.element);
         tip.show(error, 0)
+    }
+
+    /** 设置Link编辑器 by BeanSoft 2024.5.15 */
+    public trigLinkEditor( aElement: HTMLElement, range: Range) {
+        genAPopover(this.vditor, aElement, range);
     }
 
     /** 设置主题 */

@@ -1370,12 +1370,14 @@ export const paste = async (vditor: IVditor, event: (ClipboardEvent | DragEvent)
 
     // process code
     const height = vditor[vditor.currentMode].element.scrollHeight;
+    console.log("paste textHTML = \n" + textHTML);
+    console.log("paste textPlain = \n" + textPlain);
     const code = processPasteCode(textHTML, textPlain, vditor.currentMode);
     const codeElement = vditor.currentMode === "sv" ?
         hasClosestByAttribute(event.target, "data-type", "code-block") :
         hasClosestByMatchTag(event.target, "CODE");
     if (codeElement) {
-        // 粘贴在代码位置
+        // 粘贴在代码块的位置
         if (vditor.currentMode === "sv") {
             document.execCommand("insertHTML", false, textPlain.replace(/&/g, "&amp;").replace(/</g, "&lt;"));
         } else {
@@ -1395,9 +1397,12 @@ export const paste = async (vditor: IVditor, event: (ClipboardEvent | DragEvent)
             }
         }
     } else if (code) {
-        callback.pasteCode(code);
+        // 插入新代码块，行为和 IDEA 保持一致，不自动插入 ``` 段落。回调内容是 document.execCommand("insertHTML", false, code);
+        // callback.pasteCode(code);
+        document.execCommand("insertHTML", false, textPlain.replace(/&/g, "&amp;").replace(/</g, "&lt;"));
     } else {
         if (textHTML.trim() !== "") {
+            console.log("insert HTML");
             const tempElement = document.createElement("div");
             tempElement.innerHTML = textHTML;
             tempElement.querySelectorAll("[style]").forEach((e) => {

@@ -1,5 +1,6 @@
 import Vditor from '../src/index'
 import '../src/assets/less/index.less'
+// import { genAPopover } from "../src/ts/wysiwyg/highlightToolbarWYSIWYG"
 
 // new VConsole()
 
@@ -131,6 +132,24 @@ const initVditor = (language) => {
                 return name.replace(/[^(a-zA-Z0-9\u4e00-\u9fa5\.)]/g, '').replace(/[\?\\/:|<>\*\[\]\(\)\$%\{\}@~]/g, '').replace('/\\s/g', '')
             },
         },
+
+        // 单击即可编辑的功能
+        link: {
+            isOpen : false,
+            click : ( element) => {
+                console.log("click");
+                element.focus();
+                var range = element.ownerDocument.createRange();
+                range.setStart(element, 0);
+                range.setEnd(element, 1);
+                range.collapse(true);
+                // 应用选择
+                // document.getSelection().removeAllRanges();
+                // document.getSelection().addRange(range);
+                console.debug(window.vditor);
+                window.vditor.trigLinkEditor(element, range);
+            }
+        }
     })
 }
 initVditor('zh_CN')
