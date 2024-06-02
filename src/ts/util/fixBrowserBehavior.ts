@@ -1399,7 +1399,9 @@ export const paste = async (vditor: IVditor, event: (ClipboardEvent | DragEvent)
     } else if (code) {
         // 插入新代码块，行为和 IDEA 保持一致，不自动插入 ``` 段落。回调内容是 document.execCommand("insertHTML", false, code);
         // callback.pasteCode(code);
-        document.execCommand("insertHTML", false, textPlain.replace(/&/g, "&amp;").replace(/</g, "&lt;"));
+        console.log("插入代码");
+        document.execCommand("insertHTML", false,
+            textPlain.replace(/&/g, "&amp;").replace(/</g, "&lt;"));
     } else {
         if (textHTML.trim() !== "") {
             console.log("insert HTML");
@@ -1472,6 +1474,64 @@ export const paste = async (vditor: IVditor, event: (ClipboardEvent | DragEvent)
             vditor.outline.render(vditor);
         }
     }
+    if (vditor.currentMode !== "sv") {
+        const blockElement = hasClosestBlock(getEditorRange(vditor).startContainer);
+        if (blockElement) {
+            // https://github.com/Vanessa219/vditor/issues/591
+            const range = getEditorRange(vditor);
+            vditor[vditor.currentMode].element.querySelectorAll("wbr").forEach((wbr) => {
+                wbr.remove();
+            });
+            range.insertNode(document.createElement("wbr"));
+            if (vditor.currentMode === "wysiwyg") {
+                blockElement.outerHTML = vditor.lute.SpinVditorDOM(blockElement.outerHTML);
+            } else {
+                blockElement.outerHTML = vditor.lute.SpinVditorIRDOM(blockElement.outerHTML);
+            }
+            setRangeByWbr(vditor[vditor.currentMode].element, range);
+        }
+        vditor[vditor.currentMode].element.querySelectorAll(`.vditor-${vditor.currentMode}__preview[data-render='2']`)
+            .forEach((item: HTMLElement) => {
+                processCodeRender(item, vditor);
+            });
+    }
+    vditor.wysiwyg.triggerRemoveComment(vditor);
+    execAfterRender(vditor);
+    if (vditor[vditor.currentMode].element.scrollHeight - height >
+        Math.min(vditor[vditor.currentMode].element.clientHeight, window.innerHeight) / 2) {
+        scrollCenter(vditor);
+    }
+};
+
+
+/**
+ * 处理插入 HTML 代码的逻辑
+ * @author beansoft@126.com
+ * @param vditor
+ * @param event
+ * @param callback
+ */
+export const insertHTMLCode = async (vditor: IVditor, textPlain: string) => {
+    if (vditor[vditor.currentMode].element.getAttribute("contenteditable") !== "true") {
+        return;
+    }
+
+    // const textPlain ="<div><img src='https://froala.com/wp-content/uploads/2021/06/froala-1.svg'  title='hello' width='100px' height='32px' ></div>";
+    vditor.wysiwyg.getComments(vditor);
+
+    // process code
+    const height = vditor[vditor.currentMode].element.scrollHeight;
+
+    console.log("paste textPlain = \n" + textPlain);
+    const code = true;
+    if (code) {
+        // 插入新代码块，行为和 IDEA 保持一致，不自动插入 ``` 段落。回调内容是 document.execCommand("insertHTML", false, code);
+        // callback.pasteCode(code);
+        console.log("插入代码");
+        document.execCommand("insertHTML", false,
+            textPlain.replace(/&/g, "&amp;").replace(/</g, "&lt;"));
+    }
+    //  下面这段处理代码渲染的逻辑很重要
     if (vditor.currentMode !== "sv") {
         const blockElement = hasClosestBlock(getEditorRange(vditor).startContainer);
         if (blockElement) {

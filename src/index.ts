@@ -35,7 +35,9 @@ import {afterRenderEvent} from "./ts/wysiwyg/afterRenderEvent";
 import {WYSIWYG} from "./ts/wysiwyg/index";
 import {input} from "./ts/wysiwyg/input";
 import {renderDomByMd} from "./ts/wysiwyg/renderDomByMd";
-import {genAPopover} from "./ts/wysiwyg/highlightToolbarWYSIWYG";
+import {genAPopover} from "./ts/wysiwyg/highlightToolbarWYSIWYG";// BeanSoft 暴露超链接点击即可编辑交互
+import {insertHTML} from "./ts/util/selection";
+import { insertHTMLCode } from "./ts/util/fixBrowserBehavior"
 
 class Vditor extends VditorMethod {
     public readonly version: string;
@@ -106,6 +108,18 @@ class Vditor extends VditorMethod {
     /** 设置Link编辑器 by BeanSoft 2024.5.15 */
     public trigLinkEditor( aElement: HTMLElement, range: Range) {
         genAPopover(this.vditor, aElement, range);
+    }
+
+    /**
+     * 参考剪贴板处理，加入插入 html image 代码等的功能，注意必须用 div 包起来，例如
+     * <div><img height='100' src='https://froala.com/wp-content/uploads/2021/06/froala-1.svg' width='100'/> <font color='red'>红色</font><div>
+     * @param html
+     */
+    public insertHTMLCode(html: string) {
+        // insertHTML(html, this.vditor);
+        insertHTMLCode(this.vditor, html).then(r => {
+            console.log("insertHTMLCode success!");
+        });
     }
 
     /** 设置主题 */

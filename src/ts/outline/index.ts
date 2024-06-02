@@ -25,6 +25,10 @@ export class Outline {
     }
 
     public toggle(vditor: IVditor, show = true, focus = true) {
+        // 大纲切换回调，新增 by BeanSoft
+        if (vditor.options.outline.after) {
+            vditor.options.outline.after(show);
+        }
         const btnElement = vditor.toolbar.elements.outline?.firstElementChild;
         if (show && window.innerWidth >= Constants.MOBILE_WIDTH) {
             this.element.style.display = "block";

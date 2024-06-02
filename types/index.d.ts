@@ -614,6 +614,8 @@ interface IOutline {
     enable: boolean;
     /** 大纲位置：'left', 'right'。默认值: 'left' */
     position: "left" | "right";
+    /** 切换大纲可见后的回调 BeanSoft 新增 */
+    after?(show: boolean): void;
 }
 
 interface IResize {

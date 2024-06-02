@@ -24,6 +24,8 @@ export const processPasteCode = (html: string, text: string, type = "sv") => {
         && pres[0].className !== "vditor-wysiwyg"
         && pres[0].className !== "vditor-sv") {
         // IDE
+
+        console.log("IDE");
         isCode = true;
     }
     if (html.indexOf('\n<p class="p1">') === 0) {

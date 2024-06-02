@@ -17,7 +17,7 @@
 </p>
 
 <p align="center">
-<a href="https://github.com/Vanessa219/vditor/blob/master/README_en_US.md">English</a> &nbsp;|&nbsp; <a href="https://b3log.org/vditor/demo/index.html">Demo</a>
+<a href="https://github.com/Vanessa219/vditor/blob/master/README_en_US.md">English</a>  |  <a href="https://b3log.org/vditor/demo/index.html">Demo</a>
 </p>
 
 ## 💡 简介
@@ -192,32 +192,32 @@ Markdown 输出的 HTML 所展现的外观。内置 ant-design, light，dark，w
 
 #### options
 
-|   | 说明 | 默认值 |
-| - | - | - |
-| i18n | 多语言，参见 ITips | - |
-| undoDelay | 历史记录间隔 | - |
-| after | 编辑器异步渲染完成后的回调方法 | - |
-| height | 编辑器总高度 | 'auto' |
-| minHeight | 编辑区域最小高度 | - |
-| width | 编辑器总宽度，支持 % | 'auto' |
-| placeholder | 输入区域为空时的提示 | '' |
-| lang | 语言种类：en_US, fr_FR, pt_BR, ja_JP, ko_KR, ru_RU, sv_SE, zh_CN, zh_TW | 'zh_CN' |
-| input(value: string) | 输入后触发  | - |
-| focus(value: string) | 聚焦后触发 | - |
-| blur(value: string) | 失焦后触发 | - |
-| keydown(event: KeyboardEvent) | 按下后触发 | - |
-| esc(value: string) | <kbd>esc</kbd> 按下后触发 | - |
-| ctrlEnter(value: string) | <kbd>⌘/ctrl+enter</kbd> 按下后触发 | - |
-| select(value: string) | 编辑器中选中文字后触发 | - |
-| tab | <kbd>tab</kbd> 键操作字符串，支持 `\t` 及任意字符串 | - |
-| typewriterMode | 是否启用打字机模式 | false |
-| cdn | 配置自建 CDN 地址 | `https://unpkg.com/vditor@${VDITOR_VERSION}` |
-| mode | 可选模式：sv, ir, wysiwyg | 'ir' |
-| debugger | 是否显示日志 | false |
-| value | 编辑器初始化值 | '' |
-| theme | 主题：classic, dark | 'classic' |
-| icon | 图标风格：ant, material | 'ant' |
-| customRenders: {language: string, render: (element: HTMLElement, vditor: IVditor) => void}[] | 自定义渲染器 | [] |
+|                                                                                              | 说明                                                                    | 默认值                                         |
+| -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | ---------------------------------------------- |
+| i18n                                                                                         | 多语言，参见 ITips                                                      | -                                              |
+| undoDelay                                                                                    | 历史记录间隔                                                            | -                                              |
+| after                                                                                        | 编辑器异步渲染完成后的回调方法                                          | -                                              |
+| height                                                                                       | 编辑器总高度                                                            | 'auto'                                         |
+| minHeight                                                                                    | 编辑区域最小高度                                                        | -                                              |
+| width                                                                                        | 编辑器总宽度，支持 %                                                    | 'auto'                                         |
+| placeholder                                                                                  | 输入区域为空时的提示                                                    | ''                                             |
+| lang                                                                                         | 语言种类：en_US, fr_FR, pt_BR, ja_JP, ko_KR, ru_RU, sv_SE, zh_CN, zh_TW | 'zh_CN'                                        |
+| input(value: string)                                                                         | 输入后触发                                                              | -                                              |
+| focus(value: string)                                                                         | 聚焦后触发                                                              | -                                              |
+| blur(value: string)                                                                          | 失焦后触发                                                              | -                                              |
+| keydown(event: KeyboardEvent)                                                                | 按下后触发                                                              | -                                              |
+| esc(value: string)                                                                           | <kbd>esc</kbd> 按下后触发                                               | -                                              |
+| ctrlEnter(value: string)                                                                     | <kbd>⌘/ctrl+enter</kbd> 按下后触发                                     | -                                              |
+| select(value: string)                                                                        | 编辑器中选中文字后触发                                                  | -                                              |
+| tab                                                                                          | <kbd>tab</kbd> 键操作字符串，支持 `\t` 及任意字符串                   | -                                              |
+| typewriterMode                                                                               | 是否启用打字机模式                                                      | false                                          |
+| cdn                                                                                          | 配置自建 CDN 地址                                                       | `https://unpkg.com/vditor@${VDITOR_VERSION}` |
+| mode                                                                                         | 可选模式：sv, ir, wysiwyg                                               | 'ir'                                           |
+| debugger                                                                                     | 是否显示日志                                                            | false                                          |
+| value                                                                                        | 编辑器初始化值                                                          | ''                                             |
+| theme                                                                                        | 主题：classic, dark                                                     | 'classic'                                      |
+| icon                                                                                         | 图标风格：ant, material                                                 | 'ant'                                          |
+| customRenders: {language: string, render: (element: HTMLElement, vditor: IVditor) => void}[] | 自定义渲染器                                                            | []                                             |
 
 #### options.toolbar
 
@@ -240,155 +240,155 @@ new Vditor('vditor', {
 })
 ```
 
-|   | 说明 | 默认值 |
-| - | - | - |
-| name | 唯一标示 | - |
-| icon | svg 图标 | - |
-| tip | 提示 | - |
-| tipPosition | 提示位置：'n', 'ne', 'nw', 's', 'se', 'sw', 'w', 'e' | - |
-| hotkey | 快捷键，格式为<kbd>⇧⌘</kbd>/<kbd>⌘</kbd>/<kbd>⌥⌘</kbd>| - |
-| suffix | 插入编辑器中的后缀 | - |
-| prefix | 插入编辑器中的前缀 | - |
-| click(event: Event, vditor: IVditor) | 自定义按钮点击时触发的事件 | - |
-| className | 样式名 | '' |
-| toolbar?: Array<options.toolbar> | 子菜单 | - |
+|                                      | 说明                                                        | 默认值 |
+| ------------------------------------ | ----------------------------------------------------------- | ------ |
+| name                                 | 唯一标示                                                    | -      |
+| icon                                 | svg 图标                                                    | -      |
+| tip                                  | 提示                                                        | -      |
+| tipPosition                          | 提示位置：'n', 'ne', 'nw', 's', 'se', 'sw', 'w', 'e'        | -      |
+| hotkey                               | 快捷键，格式为<kbd>⇧⌘</kbd>/<kbd>⌘</kbd>/<kbd>⌥⌘</kbd> | -      |
+| suffix                               | 插入编辑器中的后缀                                          | -      |
+| prefix                               | 插入编辑器中的前缀                                          | -      |
+| click(event: Event, vditor: IVditor) | 自定义按钮点击时触发的事件                                  | -      |
+| className                            | 样式名                                                      | ''     |
+| toolbar?: Array<options.toolbar>     | 子菜单                                                      | -      |
 
 #### options.toolbarConfig
 
-|   | 说明 | 默认值 |
-| - | - | - |
-| hide | 是否隐藏工具栏 | false |
-| pin | 是否固定工具栏 | false |
+|      | 说明           | 默认值 |
+| ---- | -------------- | ------ |
+| hide | 是否隐藏工具栏 | false  |
+| pin  | 是否固定工具栏 | false  |
 
 #### options.counter
 
-|   | 说明 | 默认值 |
-| - | - | - |
-| enable | 是否启用计数器 | false |
-| after(length: number, counter: options.counter): void | 字数统计回调 | - |
-| max | 允许输入的最大值 | - |
-| type | 统计类型：'markdown', 'text' | 'markdown' |
+|                                                       | 说明                         | 默认值     |
+| ----------------------------------------------------- | ---------------------------- | ---------- |
+| enable                                                | 是否启用计数器               | false      |
+| after(length: number, counter: options.counter): void | 字数统计回调                 | -          |
+| max                                                   | 允许输入的最大值             | -          |
+| type                                                  | 统计类型：'markdown', 'text' | 'markdown' |
 
 #### options.cache
 
-|   | 说明 | 默认值 |
-| - | - | - |
-| enable | 是否使用 localStorage 进行缓存 | true |
-| id | 缓存 key，第一个参数为元素且启用缓存时**必填** | - |
-| after(html: string): string | 缓存后的回调 | - |
+|                             | 说明                                                 | 默认值 |
+| --------------------------- | ---------------------------------------------------- | ------ |
+| enable                      | 是否使用 localStorage 进行缓存                       | true   |
+| id                          | 缓存 key，第一个参数为元素且启用缓存时**必填** | -      |
+| after(html: string): string | 缓存后的回调                                         | -      |
 
 #### options.comment
 
 ⚠️：仅支持 wysiwyg 模式
 
-|   | 说明 | 默认值 |
-| - | - | - |
-| enable | 是否启用评论模式 | false |
-| add(id: string, text: string, commentsData: ICommentsData[]) | 添加评论回调 | - |
-| remove(ids: string[]) | 删除评论回调 | - |
-| scroll(top: number) | 滚动回调 | - |
-| adjustTop(commentsData: ICommentsData[]) | 文档修改时，适配评论高度 | - |
+|                                                              | 说明                     | 默认值 |
+| ------------------------------------------------------------ | ------------------------ | ------ |
+| enable                                                       | 是否启用评论模式         | false  |
+| add(id: string, text: string, commentsData: ICommentsData[]) | 添加评论回调             | -      |
+| remove(ids: string[])                                        | 删除评论回调             | -      |
+| scroll(top: number)                                          | 滚动回调                 | -      |
+| adjustTop(commentsData: ICommentsData[])                     | 文档修改时，适配评论高度 | -      |
 
 #### options.preview
 
-|   | 说明 | 默认值 |
-| - | - | - |
-| delay | 预览 debounce 毫秒间隔 | 1000 |
-| maxWidth | 预览区域最大宽度 | 800 |
-| mode | 显示模式：both, editor | 'both' |
-| url | md 解析请求 | - |
-| parse(element: HTMLElement) | 预览回调 | - |
-| transform(html: string): string | 渲染之前回调 | - |
+|                                 | 说明                   | 默认值 |
+| ------------------------------- | ---------------------- | ------ |
+| delay                           | 预览 debounce 毫秒间隔 | 1000   |
+| maxWidth                        | 预览区域最大宽度       | 800    |
+| mode                            | 显示模式：both, editor | 'both' |
+| url                             | md 解析请求            | -      |
+| parse(element: HTMLElement)     | 预览回调               | -      |
+| transform(html: string): string | 渲染之前回调           | -      |
 
 #### options.preview.hljs
 
-|   | 说明 | 默认值 |
-| - | - | - |
-| defaultLang | 未指定语言时默认使用该语言 | '' |
-| enable | 是否启用代码高亮 | true |
-| style | 可选值参见[Chroma](https://xyproto.github.io/splash/docs/longer/all.html) | `github` |
-| lineNumber | 是否启用行号 | false |
-| langs | 自定义指定语言 | [CODE_LANGUAGES](https://github.com/Vanessa219/vditor/blob/53ca8f9a0e511b37b5dae7c6b15eb933e9e02ccd/src/ts/constants.ts#L20) |
-| renderMenu(code: HTMLElement, copy: HTMLElement) | 渲染菜单按钮 | - |
+|                                                  | 说明                                                                   | 默认值                                                                                                                    |
+| ------------------------------------------------ | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| defaultLang                                      | 未指定语言时默认使用该语言                                             | ''                                                                                                                        |
+| enable                                           | 是否启用代码高亮                                                       | true                                                                                                                      |
+| style                                            | 可选值参见[Chroma](https://xyproto.github.io/splash/docs/longer/all.html) | `github`                                                                                                                |
+| lineNumber                                       | 是否启用行号                                                           | false                                                                                                                     |
+| langs                                            | 自定义指定语言                                                         | [CODE_LANGUAGES](https://github.com/Vanessa219/vditor/blob/53ca8f9a0e511b37b5dae7c6b15eb933e9e02ccd/src/ts/constants.ts#L20) |
+| renderMenu(code: HTMLElement, copy: HTMLElement) | 渲染菜单按钮                                                           | -                                                                                                                         |
 
 #### options.preview.markdown
 
-|   | 说明 | 默认值 |
-| - | - | - |
-| autoSpace | 自动空格 | false |
-| gfmAutoLink | 自动链接 | true |
-| fixTermTypo | 自动矫正术语 | false |
-| toc | 插入目录 | false |
-| footnotes | 脚注 | true |
-| codeBlockPreview | wysiwyg 和 ir 模式下是否对代码块进行渲染 | true |
-| mathBlockPreview | wysiwyg 和 ir 模式下是否对数学公式进行渲染 | true |
-| paragraphBeginningSpace | 段落开头空两个 | false |
-| sanitize | 是否启用过滤 XSS | true |
-| listStyle | 为列表添加 data-style 属性 | false |
-| linkBase | 链接相对路径前缀 | '' |
-| linkPrefix | 链接强制前缀 | '' |
-| mark | 启用 mark 标记 | false |
+|                         | 说明                                       | 默认值 |
+| ----------------------- | ------------------------------------------ | ------ |
+| autoSpace               | 自动空格                                   | false  |
+| gfmAutoLink             | 自动链接                                   | true   |
+| fixTermTypo             | 自动矫正术语                               | false  |
+| toc                     | 插入目录                                   | false  |
+| footnotes               | 脚注                                       | true   |
+| codeBlockPreview        | wysiwyg 和 ir 模式下是否对代码块进行渲染   | true   |
+| mathBlockPreview        | wysiwyg 和 ir 模式下是否对数学公式进行渲染 | true   |
+| paragraphBeginningSpace | 段落开头空两个                             | false  |
+| sanitize                | 是否启用过滤 XSS                           | true   |
+| listStyle               | 为列表添加 data-style 属性                 | false  |
+| linkBase                | 链接相对路径前缀                           | ''     |
+| linkPrefix              | 链接强制前缀                               | ''     |
+| mark                    | 启用 mark 标记                             | false  |
 
 #### options.preview.theme
 
-|   | 说明 | 默认值 |
-| - | - | - |
-| current | 当前主题 | "light" |
-| list | 可选主题列表 | { "ant-design": "Ant Design", dark: "Dark", light: "Light", wechat: "WeChat" } |
-| path | 主题样式地址 | `https://unpkg.com/vditor@${VDITOR_VERSION}/dist/css/content-theme` |
+|         | 说明         | 默认值                                                                         |
+| ------- | ------------ | ------------------------------------------------------------------------------ |
+| current | 当前主题     | "light"                                                                        |
+| list    | 可选主题列表 | { "ant-design": "Ant Design", dark: "Dark", light: "Light", wechat: "WeChat" } |
+| path    | 主题样式地址 | `https://unpkg.com/vditor@${VDITOR_VERSION}/dist/css/content-theme`          |
 
 #### options.preview.math
 
-|   | 说明 | 默认值 |
-| - | - | - |
-| inlineDigit | 内联数学公式起始 $ 后是否允许数字 | false |
-| macros | 使用 MathJax 渲染时传入的宏定义 | {} |
-| engine | 数学公式渲染引擎：KaTeX, MathJax | 'KaTeX' |
-| mathJaxOptions | 数学公式渲染引擎为 MathJax 时的参数 | - |
+|                | 说明                                | 默认值  |
+| -------------- | ----------------------------------- | ------- |
+| inlineDigit    | 内联数学公式起始 $ 后是否允许数字   | false   |
+| macros         | 使用 MathJax 渲染时传入的宏定义     | {}      |
+| engine         | 数学公式渲染引擎：KaTeX, MathJax    | 'KaTeX' |
+| mathJaxOptions | 数学公式渲染引擎为 MathJax 时的参数 | -       |
 
 #### options.preview.actions?: Array<IPreviewAction | IPreviewActionCustom>
 
 默认值为 ["desktop", "tablet", "mobile", "mp-wechat", "zhihu"]。
 可从默认值中挑选进行配置，也可使用以下字段进行自定制开发。
 
-|   | 说明 | 默认值 |
-| - | - | - |
-| key | 按钮唯一标识，不能为空 | - |
-| text | 按钮文字 | - |
-| tooltip | 提示 | - |
-| className | 按钮类名 | - |
-| click(key: string) | 按钮点击回调事件 | - |
+|                    | 说明                   | 默认值 |
+| ------------------ | ---------------------- | ------ |
+| key                | 按钮唯一标识，不能为空 | -      |
+| text               | 按钮文字               | -      |
+| tooltip            | 提示                   | -      |
+| className          | 按钮类名               | -      |
+| click(key: string) | 按钮点击回调事件       | -      |
 
 #### options.preview.render.media
 
-|        | 说明        | 默认值  |
-|--------|-----------|------|
-| enable | 是否启用多媒体渲染 | true |
+|        | 说明               | 默认值 |
+| ------ | ------------------ | ------ |
+| enable | 是否启用多媒体渲染 | true   |
 
 #### options.image
 
-|   | 说明 | 默认值 |
-| - | - | - |
-| isPreview | 是否预览图片 | true |
-| preview(bom: Element) => void | 图片预览处理 | - |
+|                               | 说明         | 默认值 |
+| ----------------------------- | ------------ | ------ |
+| isPreview                     | 是否预览图片 | true   |
+| preview(bom: Element) => void | 图片预览处理 | -      |
 
 #### options.link
 
-|   | 说明 | 默认值 |
-| - | - | - |
-| isOpen | 是否打开链接地址 | true |
-| click(bom: Element) => void | 点击链接事件 | - |
+|                             | 说明             | 默认值 |
+| --------------------------- | ---------------- | ------ |
+| isOpen                      | 是否打开链接地址 | true   |
+| click(bom: Element) => void | 点击链接事件     | -      |
 
 #### options.hint
 
-|   | 说明 | 默认值 |
-| - | - | - |
-| parse | 是否进行 md 解析 | true |
-| delay | 提示 debounce 毫秒间隔 | 200 |
-| emoji | 默认表情，可从[lute/emoji_map](https://github.com/88250/lute/blob/master/parse/emoji_map.go) 中选取，也可自定义 | { '+1': '👍', '-1': '👎', 'heart': '❤️', 'cold_sweat': '😰' } |
-| emojiTail | 常用表情提示 | - |
-| emojiPath | 表情图片地址 | `https://unpkg.com/vditor@${VDITOR_VERSION}/dist/images/emoji` |
-| extend: IHintExtend[] | 对 @/话题等关键字自动补全的扩展 | [] |
+|                       | 说明                                                                                                         | 默认值                                                           |
+| --------------------- | ------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
+| parse                 | 是否进行 md 解析                                                                                             | true                                                             |
+| delay                 | 提示 debounce 毫秒间隔                                                                                       | 200                                                              |
+| emoji                 | 默认表情，可从[lute/emoji_map](https://github.com/88250/lute/blob/master/parse/emoji_map.go) 中选取，也可自定义 | { '+1': '👍', '-1': '👎', 'heart': '❤️', 'cold_sweat': '😰' }  |
+| emojiTail             | 常用表情提示                                                                                                 | -                                                                |
+| emojiPath             | 表情图片地址                                                                                                 | `https://unpkg.com/vditor@${VDITOR_VERSION}/dist/images/emoji` |
+| extend: IHintExtend[] | 对 @/话题等关键字自动补全的扩展                                                                              | []                                                               |
 
 ```ts
 interface IHintData {
@@ -462,89 +462,89 @@ if (xhr.status === 200) {
 }
 ```
 
-|   | 说明 | 默认值 |
-| - | - | - |
-| url | 上传 url，为空则不会触发上传相关事件 | '' |
-| max | 上传文件最大 Byte | 10 * 1024 * 1024 |
-| linkToImgUrl | 剪切板中包含图片地址时，使用此 url 重新上传 | '' |
-| linkToImgCallback(responseText: string) | 图片地址上传回调 | - |
-| linkToImgFormat(responseText: string): string | 对图片地址上传的返回值进行格式化 | - |
-| success(editor: HTMLPreElement, msg: string) | 上传成功回调 | - |
-| error(msg: string) | 上传失败回调 | - |
-| token | CORS 上传验证，头为 X-Upload-Token | - |
-| withCredentials | 跨站点访问控制 | false |
-| headers | 请求头设置 | - |
-| filename(name: string): string | 文件名安全处理 | name => name.replace(/\W/g, '') |
-| accept | 文件上传类型，同[input accept](https://www.w3schools.com/tags/att_input_accept.asp) | - |
-| validate(files: File[]) => string \| boolean | 校验，成功时返回 true 否则返回错误信息 | - |
-| handler(files: File[]) => string \| null \| Promise<string> \| Promise<null> | 自定义上传，当发生错误时返回错误信息 | - |
-| format(files: File[], responseText: string): string | 对服务端返回的数据进行转换，以满足内置的数据结构 | - |
-| file(files: File[]): File[] \| Promise<File[]> | 将上传的文件处理后再返回 | - |
-| setHeaders(): { [key: string]: string } | 上传前使用返回值设置头 | - |
-| extraData: { [key: string]: string \| Blob } | 为 FormData 添加额外的参数 | - |
-| multiple | 上传文件是否为多个 | true |
-| fieldName | 上传字段名称 | 'file[]' |
+|                                                                             | 说明                                                                             | 默认值                          |
+| --------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ------------------------------- |
+| url                                                                         | 上传 url，为空则不会触发上传相关事件                                             | ''                              |
+| max                                                                         | 上传文件最大 Byte                                                                | 10 * 1024 * 1024                |
+| linkToImgUrl                                                                | 剪切板中包含图片地址时，使用此 url 重新上传                                      | ''                              |
+| linkToImgCallback(responseText: string)                                     | 图片地址上传回调                                                                 | -                               |
+| linkToImgFormat(responseText: string): string                               | 对图片地址上传的返回值进行格式化                                                 | -                               |
+| success(editor: HTMLPreElement, msg: string)                                | 上传成功回调                                                                     | -                               |
+| error(msg: string)                                                          | 上传失败回调                                                                     | -                               |
+| token                                                                       | CORS 上传验证，头为 X-Upload-Token                                               | -                               |
+| withCredentials                                                             | 跨站点访问控制                                                                   | false                           |
+| headers                                                                     | 请求头设置                                                                       | -                               |
+| filename(name: string): string                                              | 文件名安全处理                                                                   | name => name.replace(/\W/g, '') |
+| accept                                                                      | 文件上传类型，同[input accept](https://www.w3schools.com/tags/att_input_accept.asp) | -                               |
+| validate(files: File[]) => string\| boolean                                 | 校验，成功时返回 true 否则返回错误信息                                           | -                               |
+| handler(files: File[]) => string\| null \| Promise<string> \| Promise<null> | 自定义上传，当发生错误时返回错误信息                                             | -                               |
+| format(files: File[], responseText: string): string                         | 对服务端返回的数据进行转换，以满足内置的数据结构                                 | -                               |
+| file(files: File[]): File[]\| Promise<File[]>                               | 将上传的文件处理后再返回                                                         | -                               |
+| setHeaders(): { [key: string]: string }                                     | 上传前使用返回值设置头                                                           | -                               |
+| extraData: { [key: string]: string\| Blob }                                 | 为 FormData 添加额外的参数                                                       | -                               |
+| multiple                                                                    | 上传文件是否为多个                                                               | true                            |
+| fieldName                                                                   | 上传字段名称                                                                     | 'file[]'                        |
 
 #### options.resize
 
-|   | 说明 | 默认值 |
-| - | - | - |
-| enable | 是否支持大小拖拽 | false |
-| position | 拖拽栏位置：'top', 'bottom' | 'bottom' |
-| after(height: number) | 拖拽结束的回调 | - |
+|                       | 说明                        | 默认值   |
+| --------------------- | --------------------------- | -------- |
+| enable                | 是否支持大小拖拽            | false    |
+| position              | 拖拽栏位置：'top', 'bottom' | 'bottom' |
+| after(height: number) | 拖拽结束的回调              | -        |
 
 #### options.classes
 
-|   | 说明 | 默认值 |
-| - | - | - |
-| preview | 预览元素上的 className | '' |
+|         | 说明                   | 默认值 |
+| ------- | ---------------------- | ------ |
+| preview | 预览元素上的 className | ''     |
 
 #### options.fullscreen
 
-|   | 说明 | 默认值 |
-| - | - | - |
-| index | 全屏层级 | 90 |
+|       | 说明     | 默认值 |
+| ----- | -------- | ------ |
+| index | 全屏层级 | 90     |
 
 #### options.outline
 
-|   | 说明 | 默认值 |
-| - | - | - |
-| enable | 初始化是否展现大纲 | false |
+|          | 说明                      | 默认值 |
+| -------- | ------------------------- | ------ |
+| enable   | 初始化是否展现大纲        | false  |
 | position | 大纲位置：'left', 'right' | 'left' |
 
 #### methods
 
-|   | 说明 |
-| - | - |
-| exportJSON(markdown: string) | 根据 Markdown 获取对应 JSON |
-| getValue() | 获取 Markdown 内容 |
-| getHTML() | 获取 HTML 内容 |
-| insertValue(value: string, render = true) | 在焦点处插入内容，并默认进行 Markdown 渲染 |
-| focus() | 聚焦到编辑器 |
-| blur() | 让编辑器失焦 |
-| disabled() | 禁用编辑器 |
-| enable() | 解除编辑器禁用 |
-| getSelection(): string | 返回选中的字符串 |
-| setValue(markdown: string, clearStack = false) | 设置编辑器内容且选中清空历史栈 |
-| clearStack() | 清空撤销和重做记录栈|
-| renderPreview(value?: string) | 设置预览区域内容 |
-| getCursorPosition():{top: number, left: number} | 获取焦点位置 |
-| deleteValue() | 删除选中内容 |
-| updateValue(value: string) | 更新选中内容 |
-| isUploading() | 上传是否还在进行中 |
-| clearCache() | 清除缓存 |
-| disabledCache() | 禁用缓存 |
-| enableCache() | 启用缓存 |
-| html2md(value: string) | HTML 转 md |
-| tip(text: string, time: number) | 消息提示。time 为 0 将一直显示 |
-| setPreviewMode(mode: "both" \| "editor") | 设置预览模式 |
-| setTheme(theme: "dark" \| "classic", contentTheme?: string, codeTheme?: string, contentThemePath?: string) | 设置主题、内容主题及代码块风格 |
-| getCurrentMode(): string | 获取编辑器当前编辑模式 |
-| destroy() | 销毁编辑器 |
-| getCommentIds(): {id: string, top: number}[] | 获取所有评论 |
-| hlCommentIds(ids: string[]) | 高亮评论 |
-| unHlCommentIds(ids: string[]) | 取消评论高亮 |
-| removeCommentIds(removeIds: string[]) | 删除评论 |
+|                                                                                                           | 说明                                       |
+| --------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| exportJSON(markdown: string)                                                                              | 根据 Markdown 获取对应 JSON                |
+| getValue()                                                                                                | 获取 Markdown 内容                         |
+| getHTML()                                                                                                 | 获取 HTML 内容                             |
+| insertValue(value: string, render = true)                                                                 | 在焦点处插入内容，并默认进行 Markdown 渲染 |
+| focus()                                                                                                   | 聚焦到编辑器                               |
+| blur()                                                                                                    | 让编辑器失焦                               |
+| disabled()                                                                                                | 禁用编辑器                                 |
+| enable()                                                                                                  | 解除编辑器禁用                             |
+| getSelection(): string                                                                                    | 返回选中的字符串                           |
+| setValue(markdown: string, clearStack = false)                                                            | 设置编辑器内容且选中清空历史栈             |
+| clearStack()                                                                                              | 清空撤销和重做记录栈                       |
+| renderPreview(value?: string)                                                                             | 设置预览区域内容                           |
+| getCursorPosition():{top: number, left: number}                                                           | 获取焦点位置                               |
+| deleteValue()                                                                                             | 删除选中内容                               |
+| updateValue(value: string)                                                                                | 更新选中内容                               |
+| isUploading()                                                                                             | 上传是否还在进行中                         |
+| clearCache()                                                                                              | 清除缓存                                   |
+| disabledCache()                                                                                           | 禁用缓存                                   |
+| enableCache()                                                                                             | 启用缓存                                   |
+| html2md(value: string)                                                                                    | HTML 转 md                                 |
+| tip(text: string, time: number)                                                                           | 消息提示。time 为 0 将一直显示             |
+| setPreviewMode(mode: "both"\| "editor")                                                                   | 设置预览模式                               |
+| setTheme(theme: "dark"\| "classic", contentTheme?: string, codeTheme?: string, contentThemePath?: string) | 设置主题、内容主题及代码块风格             |
+| getCurrentMode(): string                                                                                  | 获取编辑器当前编辑模式                     |
+| destroy()                                                                                                 | 销毁编辑器                                 |
+| getCommentIds(): {id: string, top: number}[]                                                              | 获取所有评论                               |
+| hlCommentIds(ids: string[])                                                                               | 高亮评论                                   |
+| unHlCommentIds(ids: string[])                                                                             | 取消评论高亮                               |
+| removeCommentIds(removeIds: string[])                                                                     | 删除评论                                   |
 
 #### static methods
 
@@ -588,27 +588,27 @@ options?: IPreviewOptions {
 
 * ⚠️ `method.min.js`  和 `index.min.js` 不可同时引入
 
-|   | 说明 |
-| - | - |
-| previewImage(oldImgElement: HTMLImageElement, lang: keyof II18n = "zh_CN", theme = "classic") | 点击图片预览 |
-| mermaidRender(element: HTMLElement, cdn = options.cdn, theme = options.theme) | 流程图/时序图/甘特图 |
-| flowchartRender(element: HTMLElement, cdn = options.cdn) | flowchart 渲染 |
-| codeRender(element: HTMLElement, option?: IHljs) | 为 element 中的代码块添加复制按钮 |
-| chartRender(element: (HTMLElement \| Document) = document, cdn = options.cdn, theme = options.theme) | 图表渲染 |
-| mindmapRender(element: (HTMLElement \| Document) = document, cdn = options.cdn, theme = options.theme) | 脑图渲染 |
-| plantumlRender(element: (HTMLElement \| Document) = document, cdn = options.cdn) | plantuml 渲染 |
-| abcRender(element: (HTMLElement \| Document) = document, cdn = options.cdn) | 五线谱渲染 |
-| md2html(mdText: string, options?: IPreviewOptions): Promise\<string> | Markdown 文本转换为 HTML，该方法需使用[异步编程](https://ld246.com/article/1546828434083?r=Vanessa#toc_h3_1) |
-| preview(previewElement: HTMLDivElement, markdown: string, options?: IPreviewOptions) | 页面 Markdown 文章渲染 |
-| highlightRender(hljsOption?: IHljs, element?: HTMLElement \| Document, cdn = options.cdn) | 为 element 中的代码块进行高亮渲染 |
-| mediaRender(element: HTMLElement) | 为[特定链接](https://ld246.com/article/1589813914768)分别渲染为视频、音频、嵌入的 iframe |
-| mathRender(element: HTMLElement, options?: {cdn?: string, math?: IMath}) | 对数学公式进行渲染 |
-| speechRender(element: HTMLElement, lang?: (keyof II18nLang)) | 对选中的文字进行阅读 |
-| graphvizRender(element: HTMLElement, cdn?: string) | 对 graphviz 进行渲染 |
-| outlineRender(contentElement: HTMLElement, targetElement: Element) | 对大纲进行渲染 |
-| lazyLoadImageRender(element: (HTMLElement \| Document) = document) | 对启用懒加载的图片进行渲染 |
-| setCodeTheme(codeTheme: string, cdn = options.cdn) | 设置代码主题，codeTheme 参见 options.preview.hljs.style |
-| setContentTheme(contentTheme: string, path: string) | 设置内容主题，contentTheme 参见 options.preview.theme.list |
+|                                                                                                       | 说明                                                                                                      |
+| ----------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| previewImage(oldImgElement: HTMLImageElement, lang: keyof II18n = "zh_CN", theme = "classic")         | 点击图片预览                                                                                              |
+| mermaidRender(element: HTMLElement, cdn = options.cdn, theme = options.theme)                         | 流程图/时序图/甘特图                                                                                      |
+| flowchartRender(element: HTMLElement, cdn = options.cdn)                                              | flowchart 渲染                                                                                            |
+| codeRender(element: HTMLElement, option?: IHljs)                                                      | 为 element 中的代码块添加复制按钮                                                                         |
+| chartRender(element: (HTMLElement\| Document) = document, cdn = options.cdn, theme = options.theme)   | 图表渲染                                                                                                  |
+| mindmapRender(element: (HTMLElement\| Document) = document, cdn = options.cdn, theme = options.theme) | 脑图渲染                                                                                                  |
+| plantumlRender(element: (HTMLElement\| Document) = document, cdn = options.cdn)                       | plantuml 渲染                                                                                             |
+| abcRender(element: (HTMLElement\| Document) = document, cdn = options.cdn)                            | 五线谱渲染                                                                                                |
+| md2html(mdText: string, options?: IPreviewOptions): Promise\<string>                                  | Markdown 文本转换为 HTML，该方法需使用[异步编程](https://ld246.com/article/1546828434083?r=Vanessa#toc_h3_1) |
+| preview(previewElement: HTMLDivElement, markdown: string, options?: IPreviewOptions)                  | 页面 Markdown 文章渲染                                                                                    |
+| highlightRender(hljsOption?: IHljs, element?: HTMLElement\| Document, cdn = options.cdn)              | 为 element 中的代码块进行高亮渲染                                                                         |
+| mediaRender(element: HTMLElement)                                                                     | 为[特定链接](https://ld246.com/article/1589813914768)分别渲染为视频、音频、嵌入的 iframe                     |
+| mathRender(element: HTMLElement, options?: {cdn?: string, math?: IMath})                              | 对数学公式进行渲染                                                                                        |
+| speechRender(element: HTMLElement, lang?: (keyof II18nLang))                                          | 对选中的文字进行阅读                                                                                      |
+| graphvizRender(element: HTMLElement, cdn?: string)                                                    | 对 graphviz 进行渲染                                                                                      |
+| outlineRender(contentElement: HTMLElement, targetElement: Element)                                    | 对大纲进行渲染                                                                                            |
+| lazyLoadImageRender(element: (HTMLElement\| Document) = document)                                     | 对启用懒加载的图片进行渲染                                                                                |
+| setCodeTheme(codeTheme: string, cdn = options.cdn)                                                    | 设置代码主题，codeTheme 参见 options.preview.hljs.style                                                   |
+| setContentTheme(contentTheme: string, path: string)                                                   | 设置内容主题，contentTheme 参见 options.preview.theme.list                                                |
 
 ## 🏗 开发文档
 

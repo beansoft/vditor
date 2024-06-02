@@ -369,6 +369,8 @@ cond(no)->op
 
 https://v.qq.com/x/cover/zf2z0xpqcculhcz/y0016tj0qvh.html
 
+https://www.youtube.com/watch?v=q40UD1AMyHE
+
 ### 脚注
 
 这里是一个脚注引用[^1]，这里是另一个脚注引用[^bignote]。
