@@ -783,19 +783,53 @@ export const highlightToolbarWYSIWYG = (vditor: IVditor) => {
     }, 200);
 };
 
-const setPopoverPosition = (vditor: IVditor, element: HTMLElement) => {
+
+/**
+ * 设置弹出框的位置, 超链接等修改为垂直布局 @author beansoft@126.com 2024-6-9
+ * @param vditor
+ * @param element 正在操作的 HTML 元素，例如 A，IMG
+ * @param vertical 新增，控制是否为垂直布局展示
+ */
+const setPopoverPosition = (vditor: IVditor, element: HTMLElement, vertical = false) => {
     let targetElement = element;
     const tableElement = hasClosestByMatchTag(element, "TABLE");
-    if (tableElement) {
+    if (tableElement && element.tagName != "A" && element.tagName != "IMG" ) { // && element.tagName != "A" && element.tagName != "IMG"
         targetElement = tableElement;
     }
     vditor.wysiwyg.popover.style.left = "0";
+
     vditor.wysiwyg.popover.style.display = "block";
+    if(vertical) {
+        vditor.wysiwyg.popover.style.display = "flex";
+        vditor.wysiwyg.popover.style.flexDirection = "column";
+    }
+
     vditor.wysiwyg.popover.style.top =
         Math.max(-8, targetElement.offsetTop - 21 - vditor.wysiwyg.element.scrollTop) + "px";
+
     vditor.wysiwyg.popover.style.left =
         Math.min(targetElement.offsetLeft, vditor.wysiwyg.element.clientWidth - vditor.wysiwyg.popover.clientWidth) + "px";
     vditor.wysiwyg.popover.setAttribute("data-top", (targetElement.offsetTop - 21).toString());
+
+    if(vertical) {
+        const targetRect = targetElement.getBoundingClientRect();
+        const popoverRect = vditor.wysiwyg.popover.getBoundingClientRect();
+        vditor.wysiwyg.popover.style.top =
+            targetElement.offsetTop + 21 - vditor.wysiwyg.element.scrollTop + "px";
+
+        vditor.wysiwyg.popover.style.left = targetRect.left + "px";
+
+        // 防止弹出框跑到屏幕外面 参考 https://github.com/siyuan-note/siyuan/blob/750303da7ec9a1e60f0286503f70033aae7dd397/app/src/block/Panel.ts#L305
+        const bottom = targetRect.bottom;
+
+        if(bottom > window.innerHeight ) {
+            vditor.wysiwyg.popover.style.top =
+                Math.max(-200, targetElement.offsetTop - targetRect.height - 6 - vditor.wysiwyg.element.scrollTop) + "px";
+        }
+
+        vditor.wysiwyg.popover.setAttribute("data-top", (targetElement.offsetTop + 21).toString());
+    }
+
 };
 
 export const genLinkRefPopover = (vditor: IVditor, linkRefElement: HTMLElement, range = getSelection().getRangeAt(0)) => {
@@ -921,6 +955,7 @@ const genDown = (range: Range, element: HTMLElement, vditor: IVditor) => {
     vditor.wysiwyg.popover.insertAdjacentElement("beforeend", downElement);
 };
 
+// 删除按钮
 const genClose = (element: HTMLElement, vditor: IVditor) => {
     const close = document.createElement("button");
     close.setAttribute("type", "button");
@@ -974,6 +1009,38 @@ const linkHotkey = (
     }
 };
 
+// 处理 TextArea 连接
+const linkTextAreaHotkey = (
+    vditor: IVditor,
+    element: HTMLElement,
+    event: KeyboardEvent,
+    nextInputElement: HTMLTextAreaElement,
+) => {
+    if (event.isComposing) {
+        return;
+    }
+    if (event.key === "Tab") {
+        nextInputElement.focus();
+        nextInputElement.select();
+        event.preventDefault();
+        return;
+    }
+    if (
+        !isCtrl(event) &&
+        !event.shiftKey &&
+        event.altKey &&
+        event.key === "Enter"
+    ) {
+        const range = getEditorRange(vditor);
+        // firefox 不会打断 link https://github.com/Vanessa219/vditor/issues/193
+        element.insertAdjacentHTML("afterend", Constants.ZWSP);
+        range.setStartAfter(element.nextSibling);
+        range.collapse(true);
+        setSelectionFocus(range);
+        event.preventDefault();
+    }
+};
+
 export const genAPopover = (vditor: IVditor, aElement: HTMLElement, range: Range) => {
     vditor.wysiwyg.popover.innerHTML = "";
 
@@ -992,11 +1059,10 @@ export const genAPopover = (vditor: IVditor, aElement: HTMLElement, range: Range
     const inputWrap = document.createElement("span");
     inputWrap.setAttribute("aria-label", window.VditorI18n.textIsNotEmpty);
     inputWrap.className = "vditor-tooltipped vditor-tooltipped__n";
-    const input = document.createElement("input");
+    const input = createTextAreaInput();
     inputWrap.appendChild(input);
-    input.className = "vditor-input";
     input.setAttribute("placeholder", window.VditorI18n.textIsNotEmpty);
-    input.style.width = "120px";
+
     input.value = aElement.innerHTML || "";
     input.oninput = () => {
         updateA();
@@ -1008,15 +1074,14 @@ export const genAPopover = (vditor: IVditor, aElement: HTMLElement, range: Range
         if (focusToElement(event, range)) {
             return;
         }
-        linkHotkey(vditor, aElement, event, input1);
+        linkTextAreaHotkey(vditor, aElement, event, input1);
     };
 
     const input1Wrap = document.createElement("span");
     input1Wrap.setAttribute("aria-label", window.VditorI18n.link);
     input1Wrap.className = "vditor-tooltipped vditor-tooltipped__n";
-    const input1 = document.createElement("input");
+    const input1 = createTextAreaInput();
     input1Wrap.appendChild(input1);
-    input1.className = "vditor-input";
     input1.setAttribute("placeholder", window.VditorI18n.link);
     input1.value = aElement.getAttribute("href") || "";
     input1.oninput = () => {
@@ -1029,17 +1094,16 @@ export const genAPopover = (vditor: IVditor, aElement: HTMLElement, range: Range
         if (focusToElement(event, range)) {
             return;
         }
-        linkHotkey(vditor, aElement, event, input2);
+        linkTextAreaHotkey(vditor, aElement, event, input2);
     };
 
     const input2Wrap = document.createElement("span");
     input2Wrap.setAttribute("aria-label", window.VditorI18n.tooltipText);
     input2Wrap.className = "vditor-tooltipped vditor-tooltipped__n";
-    const input2 = document.createElement("input");
+    const input2 = createTextAreaInput();
+
     input2Wrap.appendChild(input2);
-    input2.className = "vditor-input";
     input2.setAttribute("placeholder", window.VditorI18n.tooltipText);
-    input2.style.width = "120px";
     input2.value = aElement.getAttribute("title") || "";
     input2.oninput = () => {
         updateA();
@@ -1051,14 +1115,53 @@ export const genAPopover = (vditor: IVditor, aElement: HTMLElement, range: Range
         if (focusToElement(event, range)) {
             return;
         }
-        linkHotkey(vditor, aElement, event, input);
+        linkTextAreaHotkey(vditor, aElement, event, input);
     };
 
     genClose(aElement, vditor);
     vditor.wysiwyg.popover.insertAdjacentElement("beforeend", inputWrap);
     vditor.wysiwyg.popover.insertAdjacentElement("beforeend", input1Wrap);
     vditor.wysiwyg.popover.insertAdjacentElement("beforeend", input2Wrap);
-    setPopoverPosition(vditor, aElement);
+    genOpenLink(aElement, vditor, aElement.innerHTML || "");
+    setPopoverPosition(vditor, aElement, true);
+};
+
+// 生成 TextArea 输入框
+const createTextAreaInput = () => {
+    const input = document.createElement("textarea");
+    input.rows = 1;
+    input.className = "vditor-input";
+    input.setAttribute("placeholder", window.VditorI18n.textIsNotEmpty);
+    input.style.minWidth = "40em";
+    input.style.minHeight= "1.5em";
+    input.style.border = "1";
+    input.style.borderRadius = "6px";
+    return input;
+}
+
+// 外部打开按钮
+const genOpenLink = (element: HTMLElement, vditor: IVditor, link:string) => {
+    const close = document.createElement("button");
+    close.setAttribute("type", "button");
+    // close.setAttribute("data-type", "remove");
+    close.setAttribute("aria-label", "Tip: Alt+Click Quick Open Link");
+    close.innerHTML =
+        '<svg><use xlink:href="#iconOpen"></use></svg>&nbsp;Open In External Browser';
+    close.className = "vditor-icon vditor-tooltipped vditor-tooltipped__n";
+    close.onclick = () => {
+        let url = link + "";
+        if(url === "") return;
+        if(url.lastIndexOf("openExternal=true") == -1) {
+            if(url.lastIndexOf("?") == -1) {
+                url += "?openExternal=true";
+            } else {
+                url += "&openExternal=true";
+            }
+        }
+
+        window.open(url);
+    };
+    vditor.wysiwyg.popover.insertAdjacentElement("beforeend", close);
 };
 
 export const genImagePopover = (event: Event, vditor: IVditor) => {
@@ -1076,9 +1179,8 @@ export const genImagePopover = (event: Event, vditor: IVditor) => {
     const inputWrap = document.createElement("span");
     inputWrap.setAttribute("aria-label", window.VditorI18n.imageURL);
     inputWrap.className = "vditor-tooltipped vditor-tooltipped__n";
-    const inputElement = document.createElement("input");
+    const inputElement = createTextAreaInput();
     inputWrap.appendChild(inputElement);
-    inputElement.className = "vditor-input";
     inputElement.setAttribute("placeholder", window.VditorI18n.imageURL);
     inputElement.value = imgElement.getAttribute("src") || "";
     inputElement.oninput = () => {
@@ -1091,11 +1193,9 @@ export const genImagePopover = (event: Event, vditor: IVditor) => {
     const altWrap = document.createElement("span");
     altWrap.setAttribute("aria-label", window.VditorI18n.alternateText);
     altWrap.className = "vditor-tooltipped vditor-tooltipped__n";
-    const alt = document.createElement("input");
+    const alt = createTextAreaInput();
     altWrap.appendChild(alt);
-    alt.className = "vditor-input";
     alt.setAttribute("placeholder", window.VditorI18n.alternateText);
-    alt.style.width = "52px";
     alt.value = imgElement.getAttribute("alt") || "";
     alt.oninput = () => {
         updateImg();
@@ -1107,9 +1207,8 @@ export const genImagePopover = (event: Event, vditor: IVditor) => {
     const titleWrap = document.createElement("span");
     titleWrap.setAttribute("aria-label", window.VditorI18n.title);
     titleWrap.className = "vditor-tooltipped vditor-tooltipped__n";
-    const title = document.createElement("input");
+    const title = createTextAreaInput();
     titleWrap.appendChild(title);
-    title.className = "vditor-input";
     title.setAttribute("placeholder", window.VditorI18n.title);
     title.value = imgElement.getAttribute("title") || "";
     title.oninput = () => {
@@ -1123,7 +1222,7 @@ export const genImagePopover = (event: Event, vditor: IVditor) => {
     vditor.wysiwyg.popover.insertAdjacentElement("beforeend", altWrap);
     vditor.wysiwyg.popover.insertAdjacentElement("beforeend", titleWrap);
 
-    setPopoverPosition(vditor, imgElement);
+    setPopoverPosition(vditor, imgElement, true);
 };
 
 
