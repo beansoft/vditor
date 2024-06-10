@@ -318,6 +318,8 @@ interface ITips {
     uploadError: string;
     uploading: string;
     wysiwyg: string;
+    openExternal: string;//外部打开
+    openExternalTip: string;//外部打开提示语
 }
 
 interface II18n {

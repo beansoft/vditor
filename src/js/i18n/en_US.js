@@ -82,4 +82,6 @@ window.VditorI18n = {
   'uploadError': 'upload error',
   'uploading': 'uploading...',
   'wysiwyg': 'WYSIWYG',
+  'openExternal': '&nbsp;Open In External Browser',
+  'openExternalTip': 'Tip: Alt + Left Click to open the link in an external browser quickly.',
 }

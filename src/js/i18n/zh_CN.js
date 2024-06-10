@@ -82,4 +82,6 @@ window.VditorI18n = {
   'uploadError': '上传错误',
   'uploading': '上传中...',
   'wysiwyg': '所见即所得',
+    'openExternal': '&nbsp;使用外部浏览器打开',
+    'openExternalTip': '提示: Alt + 左键点击可以快速在外部浏览器打开链接。',
 }
