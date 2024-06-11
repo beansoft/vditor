@@ -815,10 +815,22 @@ const setPopoverPosition = (vditor: IVditor, element: HTMLElement, vertical = fa
         const targetRect = targetElement.getBoundingClientRect();
         // vditor.wysiwyg.popover.style.top =
         //     targetElement.offsetTop + 21 - vditor.wysiwyg.element.scrollTop + "px";
-
+        const isImg = element.tagName === "IMG";
         // 固定弹出编辑器的位置到原始元素位置下方
         vditor.wysiwyg.popover.style.top = (targetRect.bottom - 30) +  "px";
-        vditor.wysiwyg.popover.style.left = targetRect.left + 20 + "px";
+        if(isImg) {// 图片单独处理，弹出框覆盖在图片上
+            let _ImgTop = targetRect.top + 10;
+            if(_ImgTop < 10) { // 防止跑到编辑区顶部外面
+                _ImgTop = 10;
+            }
+            vditor.wysiwyg.popover.style.top = _ImgTop +  "px";
+        }
+
+        vditor.wysiwyg.popover.style.left = targetRect.left + 20 + "px";// 右移20像素显示删除按钮上的完整文案
+        if(vditor.options.outline.enable && vditor.options.outline.position === "left" ) {
+            // 修复大纲在左侧显示弹窗右偏移问题，目前模式只支持全屏模式，大纲宽度为 250px 固定
+            vditor.wysiwyg.popover.style.left = targetRect.left + 20 - 250 + "px";
+        }
 
         // 防止弹出框跑到屏幕外面 参考 https://github.com/siyuan-note/siyuan/blob/750303da7ec9a1e60f0286503f70033aae7dd397/app/src/block/Panel.ts#L305
         const popoverRect = vditor.wysiwyg.popover.getBoundingClientRect();
@@ -826,14 +838,21 @@ const setPopoverPosition = (vditor: IVditor, element: HTMLElement, vertical = fa
         const bottom = popoverRect.bottom;
 
         if(bottom > window.innerHeight ) {
-            vditor.wysiwyg.popover.style.top =
-                ( targetRect.top - popoverRect.height - 40 ) + "px";
+            let _top = window.innerHeight - popoverRect.height - 40;
+            if(_top < 0) {
+                // 防止向上调整的弹出框跑到工具栏上，为0时刚好在编辑区内
+                _top  = 0;
+            }
+            vditor.wysiwyg.popover.style.top = _top + "px";
 
             // if(tableElement) {
             //     vditor.wysiwyg.popover.style.top =
             //         (tableElement.offsetTop - popoverRect.height - 6 - vditor.wysiwyg.element.scrollTop) + "px";
             // }
         }
+
+
+        console.log("vditor.wysiwyg.popover.style.top = ", vditor.wysiwyg.popover.style.top);
 
         vditor.wysiwyg.popover.setAttribute("data-top", (targetElement.offsetTop + 21).toString());
     }

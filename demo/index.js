@@ -92,7 +92,7 @@ const initVditor = (language) => {
         height: window.innerHeight + 100,
         outline: {
             enable: true,
-            position: 'right',
+            position: 'left',
             after(show) {
                 console.log("Outline show = " + show);
             }
