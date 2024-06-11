@@ -16,7 +16,7 @@
 <a title="Author GitHub Followers" target="_blank" href="https://github.com/vanessa219"><img src="https://img.shields.io/github/followers/vanessa219.svg?label=Followers&style=social"></a>
 </p>
 
-<p align="center">
+<p align="left">
 <a href="https://github.com/Vanessa219/vditor/blob/master/README_en_US.md">English</a>  |  <a href="https://b3log.org/vditor/demo/index.html">Demo</a>
 </p>
 
