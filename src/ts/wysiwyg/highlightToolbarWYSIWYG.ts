@@ -928,81 +928,83 @@ export const genLinkRefPopover = (vditor: IVditor, linkRefElement: HTMLElement, 
     setPopoverPosition(vditor, linkRefElement);
 };
 
+// 上移按钮
 const genUp = (range: Range, element: HTMLElement, vditor: IVditor) => {
-    const previousElement = element.previousElementSibling;
-    if (
-        !previousElement ||
-        (!element.parentElement.isEqualNode(vditor.wysiwyg.element) &&
-            element.tagName !== "LI")
-    ) {
-        return;
-    }
-    const upElement = document.createElement("button");
-    upElement.setAttribute("type", "button");
-    upElement.setAttribute("data-type", "up");
-    upElement.setAttribute("aria-label", window.VditorI18n.up + "<" + updateHotkeyTip("⇧⌘U") + ">");
-    upElement.innerHTML = '<svg><use xlink:href="#vditor-icon-up"></use></svg>';
-    upElement.className = "vditor-icon vditor-tooltipped vditor-tooltipped__n";
-    upElement.onclick = () => {
-        range.insertNode(document.createElement("wbr"));
-        previousElement.insertAdjacentElement("beforebegin", element);
-        setRangeByWbr(vditor.wysiwyg.element, range);
-        afterRenderEvent(vditor);
-        highlightToolbarWYSIWYG(vditor);
-        scrollCenter(vditor);
-    };
-    vditor.wysiwyg.popover.insertAdjacentElement("beforeend", upElement);
+    // const previousElement = element.previousElementSibling;
+    // if (
+    //     !previousElement ||
+    //     (!element.parentElement.isEqualNode(vditor.wysiwyg.element) &&
+    //         element.tagName !== "LI")
+    // ) {
+    //     return;
+    // }
+    // const upElement = document.createElement("button");
+    // upElement.setAttribute("type", "button");
+    // upElement.setAttribute("data-type", "up");
+    // upElement.setAttribute("aria-label", window.VditorI18n.up + "<" + updateHotkeyTip("⇧⌘U") + ">");
+    // upElement.innerHTML = '<svg><use xlink:href="#vditor-icon-up"></use></svg>';
+    // upElement.className = "vditor-icon vditor-tooltipped vditor-tooltipped__n";
+    // upElement.onclick = () => {
+    //     range.insertNode(document.createElement("wbr"));
+    //     previousElement.insertAdjacentElement("beforebegin", element);
+    //     setRangeByWbr(vditor.wysiwyg.element, range);
+    //     afterRenderEvent(vditor);
+    //     highlightToolbarWYSIWYG(vditor);
+    //     scrollCenter(vditor);
+    // };
+    // vditor.wysiwyg.popover.insertAdjacentElement("beforeend", upElement);
 };
 
+// 下移按钮
 const genDown = (range: Range, element: HTMLElement, vditor: IVditor) => {
-    const nextElement = element.nextElementSibling;
-    if (
-        !nextElement ||
-        (!element.parentElement.isEqualNode(vditor.wysiwyg.element) &&
-            element.tagName !== "LI")
-    ) {
-        return;
-    }
-    const downElement = document.createElement("button");
-    downElement.setAttribute("type", "button");
-    downElement.setAttribute("data-type", "down");
-    downElement.setAttribute("aria-label", window.VditorI18n.down + "<" + updateHotkeyTip("⇧⌘D") + ">");
-    downElement.innerHTML =
-        '<svg><use xlink:href="#vditor-icon-down"></use></svg>';
-    downElement.className =
-        "vditor-icon vditor-tooltipped vditor-tooltipped__n";
-    downElement.onclick = () => {
-        range.insertNode(document.createElement("wbr"));
-        nextElement.insertAdjacentElement("afterend", element);
-        setRangeByWbr(vditor.wysiwyg.element, range);
-        afterRenderEvent(vditor);
-        highlightToolbarWYSIWYG(vditor);
-        scrollCenter(vditor);
-    };
-    vditor.wysiwyg.popover.insertAdjacentElement("beforeend", downElement);
+    // const nextElement = element.nextElementSibling;
+    // if (
+    //     !nextElement ||
+    //     (!element.parentElement.isEqualNode(vditor.wysiwyg.element) &&
+    //         element.tagName !== "LI")
+    // ) {
+    //     return;
+    // }
+    // const downElement = document.createElement("button");
+    // downElement.setAttribute("type", "button");
+    // downElement.setAttribute("data-type", "down");
+    // downElement.setAttribute("aria-label", window.VditorI18n.down + "<" + updateHotkeyTip("⇧⌘D") + ">");
+    // downElement.innerHTML =
+    //     '<svg><use xlink:href="#vditor-icon-down"></use></svg>';
+    // downElement.className =
+    //     "vditor-icon vditor-tooltipped vditor-tooltipped__n";
+    // downElement.onclick = () => {
+    //     range.insertNode(document.createElement("wbr"));
+    //     nextElement.insertAdjacentElement("afterend", element);
+    //     setRangeByWbr(vditor.wysiwyg.element, range);
+    //     afterRenderEvent(vditor);
+    //     highlightToolbarWYSIWYG(vditor);
+    //     scrollCenter(vditor);
+    // };
+    // vditor.wysiwyg.popover.insertAdjacentElement("beforeend", downElement);
 };
 
 // 删除元素按钮
 const genClose = (element: HTMLElement, vditor: IVditor) => {
-    const close = document.createElement("button");
-    close.setAttribute("type", "button");
-    close.setAttribute("data-type", "remove");
-    close.setAttribute("aria-label", window.VditorI18n.remove + "<" + updateHotkeyTip("⇧⌘X") + ">");
-    close.innerHTML =
-        '<svg><use xlink:href="#vditor-icon-trashcan"></use></svg>';
-    close.className = "vditor-icon vditor-tooltipped vditor-tooltipped__n";
-    close.onclick = () => {
-        const range = getEditorRange(vditor);
-        range.setStartAfter(element);
-        setSelectionFocus(range);
-        element.remove();
-        afterRenderEvent(vditor);
-        highlightToolbarWYSIWYG(vditor);
-        if (["H1", "H2", "H3", "H4", "H5", "H6"].includes(element.tagName)) {
-            renderToc(vditor);
-        }
-    };
-    vditor.wysiwyg.popover.insertAdjacentElement("beforeend", close);
+    // const close = document.createElement("button");
+    // close.setAttribute("type", "button");
+    // close.setAttribute("data-type", "remove");
+    // close.setAttribute("aria-label", window.VditorI18n.remove + "<" + updateHotkeyTip("⇧⌘X") + ">");
+    // close.innerHTML =
+    //     '<svg><use xlink:href="#vditor-icon-trashcan"></use></svg>';
+    // close.className = "vditor-icon vditor-tooltipped vditor-tooltipped__n";
+    // close.onclick = () => {
+    //     const range = getEditorRange(vditor);
+    //     range.setStartAfter(element);
+    //     setSelectionFocus(range);
+    //     element.remove();
+    //     afterRenderEvent(vditor);
+    //     highlightToolbarWYSIWYG(vditor);
+    //     if (["H1", "H2", "H3", "H4", "H5", "H6"].includes(element.tagName)) {
+    //         renderToc(vditor);
+    //     }
+    // };
+    // vditor.wysiwyg.popover.insertAdjacentElement("beforeend", close);
 };
 
 const linkHotkey = (
